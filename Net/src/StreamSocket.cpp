@@ -38,6 +38,10 @@ StreamSocket::StreamSocket(const SocketAddress& address): Socket(new StreamSocke
 	connect(address);
 }
 
+StreamSocket::StreamSocket(const SocketAddress& address, const Poco::Timespan& timeout): Socket(new StreamSocketImpl(address.family()))
+{
+	connect(address, timeout);
+}
 
 StreamSocket::StreamSocket(SocketAddress::Family family): Socket(new StreamSocketImpl(family))
 {

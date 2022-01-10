@@ -45,6 +45,11 @@ public:
 		/// Creates a stream socket and connects it to
 		/// the socket specified by address.
 
+	explicit StreamSocket(const SocketAddress& address, const Poco::Timespan& timeout);
+		/// Creates a stream socket and connects it to
+		/// the socket specified by address.
+		/// A timeout for connecting will be used.
+
 	explicit StreamSocket(SocketAddress::Family family);
 		/// Creates an unconnected stream socket
 		/// for the given address family.
