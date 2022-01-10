@@ -59,6 +59,13 @@ SecureStreamSocket::SecureStreamSocket(const SocketAddress& address, const std::
 	connect(address);
 }
 
+SecureStreamSocket::SecureStreamSocket(const SocketAddress& address, const std::string& hostName, const Poco::Timespan& timeout): 
+	StreamSocket(new SecureStreamSocketImpl(SSLManager::instance().defaultClientContext()))
+{
+	static_cast<SecureStreamSocketImpl*>(impl())->setPeerHostName(hostName);
+	connect(address, timeout);
+}
+
 
 SecureStreamSocket::SecureStreamSocket(const SocketAddress& address, Context::Ptr pContext): 
 	StreamSocket(new SecureStreamSocketImpl(pContext))

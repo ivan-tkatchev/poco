@@ -108,6 +108,14 @@ public:
 		///
 		/// The given host name is used for certificate verification.
 
+	SecureStreamSocket(const SocketAddress& address, const std::string& hostName, const Poco::Timespan& timeout);
+		/// Creates a secure stream socket using the default 
+		/// client SSL context and connects it to
+		/// the socket specified by address.
+		///
+		/// The given host name is used for certificate verification.
+		/// A timeout for connecting is used.
+
 	SecureStreamSocket(const SocketAddress& address, const std::string& hostName, Context::Ptr pContext);
 		/// Creates a secure stream socket using the given 
 		/// client SSL context and connects it to
