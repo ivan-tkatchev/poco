@@ -26,9 +26,10 @@
 #include "Poco/NumberFormatter.h"
 #include "Poco/NumberParser.h"
 #include "Poco/Format.h"
-#include "Poco/Net/DNSResolver.h"
 #include <openssl/x509v3.h>
 #include <openssl/err.h>
+
+#include <resolver/resolver.hh>
 
 
 using Poco::IOException;
@@ -407,15 +408,17 @@ bool SecureSocketImpl::isLocalHost(const std::string& hostName)
 {
 	try
 	{
-    	constexpr auto kResolverTimeoutSec = 1;
-		const auto dns = resolve_dns(hostName, DNSRecords::T_A, /*sec*/ kResolverTimeoutSec, /*8microsec*/ 0).ipv4;
+        constexpr auto kResolverTimeoutSec = 1;
+        const auto     dns =
+            http::dns::resolve_dns(hostName, http::dns::DNSRecords::T_A, /*sec*/ kResolverTimeoutSec, /*8microsec*/ 0)
+                .ipv4;
         if (dns.empty()) {
             return false;
         }
         const auto ip = dns.front();
-		return IPAddress(ip).isLoopback();
+        return IPAddress(ip).isLoopback();
 	}
-	catch (Poco::Exception&)
+	catch (...)
 	{
 		return false;
 	}
