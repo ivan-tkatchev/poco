@@ -1,3 +1,0 @@
-[submodule "NetSSL_OpenSSL/custom_libs/resolver"]
-	path = NetSSL_OpenSSL/custom_libs/resolver
-	url = https://github.com/ivan-tkatchev/lite-resolver

@@ -29,7 +29,7 @@
 #include <openssl/x509v3.h>
 #include <openssl/err.h>
 
-#include <resolver/resolver.hh>
+#include <resolver.hh>
 
 
 using Poco::IOException;
