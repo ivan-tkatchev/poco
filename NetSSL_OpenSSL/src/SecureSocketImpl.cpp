@@ -404,7 +404,7 @@ long SecureSocketImpl::verifyPeerCertificateImpl(const std::string& hostName)
 
 bool SecureSocketImpl::isLocalHost(const std::string& hostName)
 {
-    return (hostName == "localhost" || hostName == "127.0.0.1" || hostname == "0.0.0.0");
+    return (hostName == "localhost" || hostName == "127.0.0.1" || hostName == "0.0.0.0");
 }
 
 
