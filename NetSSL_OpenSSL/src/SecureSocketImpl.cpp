@@ -29,8 +29,6 @@
 #include <openssl/x509v3.h>
 #include <openssl/err.h>
 
-#include <resolver/resolver.hh>
-
 
 using Poco::IOException;
 using Poco::TimeoutException;
@@ -406,22 +404,7 @@ long SecureSocketImpl::verifyPeerCertificateImpl(const std::string& hostName)
 
 bool SecureSocketImpl::isLocalHost(const std::string& hostName)
 {
-	try
-	{
-        constexpr auto kResolverTimeoutSec = 1;
-        const auto     dns =
-            http::dns::resolve_dns(hostName, http::dns::DNSRecords::T_A, /*sec*/ kResolverTimeoutSec, /*8microsec*/ 0)
-                .ipv4;
-        if (dns.empty()) {
-            return false;
-        }
-        const auto ip = dns.front();
-        return IPAddress(ip).isLoopback();
-	}
-	catch (...)
-	{
-		return false;
-	}
+    return (hostName == "localhost" || hostName == "127.0.0.1" || hostName == "0.0.0.0");
 }
 
 

@@ -1,6 +1,6 @@
 # Sources
 file(GLOB SRCS_G "src/*.cpp")
-poco_sources_auto(SRCS ${SRCS_G} "custom_libs/resolver/resolver.cc")
+poco_sources_auto(SRCS ${SRCS_G})
 
 # Headers
 file(GLOB_RECURSE HDRS_G "include/*.h")
