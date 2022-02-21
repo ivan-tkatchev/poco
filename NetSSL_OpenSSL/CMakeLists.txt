@@ -12,8 +12,6 @@ if(MSVC AND BUILD_SHARED_LIBS)
   list(APPEND SRCS ${PROJECT_SOURCE_DIR}/DLLVersion.rc)
 endif()
 
-find_package(DNSResolver CONFIG REQUIRED)
-
 add_library(NetSSL ${SRCS})
 add_library(Poco::NetSSL ALIAS NetSSL)
 set_target_properties(
