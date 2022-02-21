@@ -21,8 +21,7 @@ set_target_properties(
              OUTPUT_NAME PocoNetSSL
              DEFINE_SYMBOL NetSSL_EXPORTS)
 
-target_link_libraries(NetSSL PUBLIC Poco::Crypto Poco::Util Poco::Net
-                                    dns_resolver)
+target_link_libraries(NetSSL PUBLIC Poco::Crypto Poco::Util Poco::Net)
 target_include_directories(
   NetSSL
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
